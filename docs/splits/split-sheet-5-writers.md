@@ -7,6 +7,11 @@ Instructions:
 - Each writer must confirm their share percentage; total must equal 100%.
 - Collect signatures (electronic or scanned) and upload the final signed PDF to `/docs/splits/`.
 
+**Privacy & Data Handling:**
+- This document contains personal information. Store securely and limit access to authorized parties only.
+- Completed split sheets should be retained per your organization's data retention policy.
+- Share only with necessary parties (e.g., PROs, publishers, legal counsel).
+
 ## Song Information
 - Song Title: 
 - Alternate/Working Title: 
