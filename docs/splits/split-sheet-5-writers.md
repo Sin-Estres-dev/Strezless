@@ -22,13 +22,13 @@ Instructions:
 
 ## Writers
 
-| Writer # | Legal Name | Performing Name | Email | Role(s) (lyrics, melody, production, etc.) | Publisher (if any) | Share (%) | Signature & Date |
-|---:|---|---|---|---|---|---:|---|
-| 1 | [Legal name] | [Stage name] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
-| 2 | [Legal name] | [Stage name] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
-| 3 | [Legal name] | [Stage name] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
-| 4 | [Legal name] | [Stage name] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
-| 5 | [Legal name] | [Stage name] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
+| Writer # | Legal Name | Performing Name | PRO (ASCAP, BMI, etc.) | Email | Role(s) (lyrics, melody, production, etc.) | Publisher (if any) | Share (%) | Signature & Date |
+|---:|---|---|---|---|---|---|---:|---|
+| 1 | [Legal name] | [Stage name] | [PRO] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
+| 2 | [Legal name] | [Stage name] | [PRO] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
+| 3 | [Legal name] | [Stage name] | [PRO] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
+| 4 | [Legal name] | [Stage name] | [PRO] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
+| 5 | [Legal name] | [Stage name] | [PRO] | [email] | [roles] | [publisher] | [ ] | [signature / date] |
 
 Total Shares: _____% (must equal 100%)
 
