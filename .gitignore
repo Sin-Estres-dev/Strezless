@@ -1,6 +1,28 @@
-composer.phar
-/vendor/
+# Python
+venv/
+__pycache__/
+*.pyc
 
-# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
+# Node
+node_modules/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# env
+.env
+.env.local
+.env.*.local
+
+# Database files & runtime data (do not commit)
+# Python SQLite DB
+services/python/data/*.db
+# Node lowdb JSON
+services/node/data/*.json
+
+# Keep data directories but ignore contents (create .gitkeep if needed)
+!services/python/data/.gitkeep
+!services/node/data/.gitkeep
