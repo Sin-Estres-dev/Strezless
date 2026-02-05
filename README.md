@@ -2,6 +2,22 @@
 
 On a quest to fulfill a childhood dream, Sin Estres has launched a business pursuit and is determined to finish that which he started to the very last breath in him.
 
+## What's This? 🎵
+
+**This is a music business documentation repository** - your toolkit for managing the business side of music production.
+
+In plain terms: If you're creating music with other people and need to track who owns what, who gets paid what, and keep everything documented properly - **this is for you**.
+
+Think of it as your "music business filing cabinet" with ready-to-use templates for:
+- 📝 Split sheets (who wrote what, who gets what percentage)
+- 📄 Legal documentation (contracts, agreements, rights)
+- 🤝 Collaboration tools (working with other artists/producers)
+- 🎼 Project organization (keeping your music business organized)
+
+**TL;DR**: Templates and tools to help you run a music production business professionally from day one.
+
+> 📖 **New here?** Read the detailed explanation: [What Is This Repository?](docs/WHAT-IS-THIS.md)
+
 ## About
 
 Strezless Musick Productionz is a music production label founded by Sin Estres (Omar Orrantia). This repository contains documentation, templates, and resources to support the music production business from the ground up.
