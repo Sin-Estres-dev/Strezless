@@ -8,6 +8,6 @@ assignees: SinEstres
 ---
 
 Experimenting a music career take off from scratch
-any one with new ideas welcomed and will definitely be taken into consideration
-Starring Artist known as Sin Estres 
+anyone with new ideas welcomed and will definitely be taken into consideration
+Starring Artist known as Sin Estres
 Omar Orrantia
