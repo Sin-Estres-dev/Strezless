@@ -1,0 +1,31 @@
+{
+  "name": "home",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/Sin-Estres-dev/Strezless#readme",
+  "bugs": {
+    "url": "https://github.com/Sin-Estres-dev/Strezless/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sin-Estres-dev/Strezless.git"
+  },
+  "license": "ISC",
+  "author": "Sin Estres",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "@paypal/paypal-server-sdk": "^1.0.0",
+    "all": "^0.0.0",
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express.js": "^1.0.0",
+    "pg": "^8.17.2"
+  }
+}
