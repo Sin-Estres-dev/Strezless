@@ -1,66 +1,79 @@
-# Terms of Service for Strezless
+# Terms of Service - Strezless Nexus
 
-**Last Updated: February 6, 2026**
-
-## 1. Acceptance of Terms
-
-By using Strezless, you agree to these Terms of Service.
-
-## 2. Eligibility
-
-- You must be 18+ years old
-- You must own or have rights to the music you upload
-- You must provide accurate information
-
-## 3. Artist Rights & Licensing
-
-### You Grant Us the Right To:
-- Distribute your music to streaming platforms
-- Use metadata and artwork for distribution
-- Collect royalties on your behalf
-
-### You Retain:
-- Copyright ownership of your music
-- Right to remove content
-- Right to terminate at any time
-
-## 4. Prohibited Content
-
-You may NOT upload:
-- Copyrighted material you don't own
-- Content that violates laws
-- Explicit content without proper labeling
-
-## 5. Royalty Payments
-
-- Royalties paid monthly/quarterly
-- Minimum payout threshold: $50
-- Payment via [Payment Method]
-
-## 6. Fees
-
-- [List your fee structure]
-- Distribution fee: ____%
-- Transaction fees: ____%
-
-## 7. Termination
-
-Either party may terminate with 30 days notice.
-
-## 8. Limitation of Liability
-
-Strezless is not liable for:
-- Platform outages
-- Third-party distribution issues
-- Lost revenue
-
-## 9. Governing Law
-
-These terms are governed by [Your State] law.
-
-## 10. Contact
-
-Email: strezless@gmail.com
+**Effective Date**: February 6, 2026  
+**Last Updated**: February 6, 2026
 
 ---
+
+## 1. Agreement to Terms
+
+By using **Strezless Nexus**, operated by **Strezless Musick Productionz** (EIN: 86-1986359), you agree to these Terms of Service.
+
+---
+
+## 2. Service Description
+
+Strezless Nexus provides music distribution services to independent artists, including:
+- Distribution to streaming platforms
+- ISRC code generation
+- Royalty tracking and payment
+- Split sheet management
+
+---
+
+## 3. User Obligations
+
+You agree to:
+- Provide accurate information
+- Own or have rights to all content you upload
+- Comply with copyright laws
+- Not upload illegal or infringing content
+
+---
+
+## 4. Payment Terms
+
+- Platform fees: [To be determined]
+- Royalty payments: Processed monthly, 60 days after end of month
+- Minimum payout threshold: $10 USD
+
+---
+
+## 5. Intellectual Property
+
+- You retain all rights to your music
+- You grant us a license to distribute your music to streaming platforms
+- We retain rights to the Strezless Nexus platform and technology
+
+---
+
+## 6. Termination
+
+Either party may terminate this agreement with 30 days written notice.
+
+---
+
+## 7. Limitation of Liability
+
+Strezless Musick Productionz is not liable for:
+- Streaming platform payment delays
+- Third-party service interruptions
+- Loss of data due to force majeure
+
+---
+
+## 8. Governing Law
+
+These terms are governed by the laws of Texas, United States.
+
+---
+
+## 9. Contact
+
+**Strezless Musick Productionz**  
+Email: strezless@gmail.com  
+Phone: +1 (915) 337-2986
+
+---
+
 *This is a template. Consult with a lawyer before using in production.*

@@ -1,105 +1,78 @@
-# Strezless Artist Distribution Agreement
+# Artist Distribution Agreement - Strezless Nexus
 
-**Agreement Date**: __________
+**Between**: Strezless Musick Productionz (EIN: 86-1986359)  
+**And**: [Artist Name]  
+**Effective Date**: [Date]
 
-**Between**: Strezless (Omar Dejesu Orrantia)  
-**And**: __________________ ("Artist")
+---
 
 ## 1. Grant of Rights
 
-Artist grants Strezless the non-exclusive right to:
-- Distribute music to digital streaming platforms
-- Collect royalties on Artist's behalf
-- Use Artist's name, likeness, and artwork for distribution purposes
+Artist grants **Strezless Nexus** the non-exclusive right to:
+- Distribute recordings to digital streaming platforms
+- Collect and remit royalties on Artist's behalf
+- Generate ISRC codes for recordings
+- Report usage to MLC and SoundExchange
 
-## 2. Artist Warranties
+---
+
+## 2. Artist Representations
 
 Artist represents and warrants that:
-- They own or control 100% of the rights to the music
-- The music does not infringe on any third-party rights
-- All samples are cleared and licensed
-- All information provided is accurate
+- Artist owns or controls all rights to the recordings
+- Recordings do not infringe on any third-party rights
+- All metadata provided is accurate
+- All split sheet information is correct
 
-## 3. Royalty Split
+---
 
-- Artist receives: ____% of net revenues
-- Strezless receives: ____% distribution fee
-- Payment schedule: Monthly/Quarterly
-- Minimum payout: $50
+## 3. Revenue Split
 
-## 4. Distribution Platforms
+- **Artist receives**: [__]% of net revenue
+- **Strezless Nexus receives**: [__]% platform fee
+- **Payment schedule**: Monthly, 60 days in arrears
+- **Minimum payout**: $10 USD
 
-Strezless will distribute to:
-- Spotify
-- Apple Music
-- YouTube Music
-- Amazon Music
-- Tidal
-- [Other platforms]
+---
 
-## 5. Metadata & ISRC Codes
+## 4. ISRC Codes
 
-- Artist responsible for accurate metadata
-- Strezless will obtain ISRC codes if needed
-- Artist must provide songwriter/producer split information
+- Strezless Nexus will generate ISRC codes using registrant code: [US-XXX-YY]
+- ISRC codes are permanent and remain with the recording
+- Artist may take ISRC codes if agreement terminates
 
-## 6. Term & Termination
+---
 
-- Initial term: _____ months/years
-- Either party may terminate with 30 days written notice
-- Upon termination, music will be removed within 60 days
-- Outstanding royalties will be paid
+## 5. Reporting
 
-## 7. Accounting & Reporting
+Strezless Nexus will provide:
+- Monthly royalty statements
+- Streaming analytics dashboard
+- Annual tax documents (1099-MISC if applicable)
 
-- Monthly statements provided
-- Artist can audit records with 30 days notice
-- All payments via [Payment Method]
+---
 
-## 8. Copyright & Ownership
+## 6. Term and Termination
 
-- Artist retains 100% copyright ownership
-- This is a distribution agreement only
-- Artist may distribute through other services
+- **Initial term**: 1 year, auto-renewing
+- **Termination**: Either party may terminate with 30 days written notice
+- **Post-termination**: Artist retains all rights; existing distributions continue for 90 days
 
-## 9. Prohibited Actions
+---
 
-Artist agrees NOT to:
-- Upload copyrighted material they don't own
-- Artificially inflate streams/downloads
-- Violate platform terms of service
+## 7. Contact
 
-## 10. Indemnification
-
-Artist indemnifies Strezless against claims arising from:
-- Copyright infringement
-- Breach of warranties
-- Violation of third-party rights
-
-## 11. Dispute Resolution
-
-- Disputes resolved through mediation
-- Governing law: [Your State]
-- Venue: [Your County/State]
-
-## 12. Contact Information
-
-**Strezless**  
+**Strezless Musick Productionz**  
+Omar Dejesu Orrantia  
 Email: strezless@gmail.com  
-EIN: 86-1986359
-
-**Artist**  
-Name: ___________________  
-Email: ___________________  
-Phone: ___________________  
-IPI: _____________________  
-ISNI: ____________________
+Phone: +1 (915) 337-2986
 
 ---
 
-**Artist Signature**: _____________________ Date: _______
+**Artist Signature**: _________________________ Date: _________
 
-**Strezless Signature**: _____________________ Date: _______
+**Strezless Musick Productionz**: _________________________ Date: _________
 
 ---
-*This is a template. Consult with an entertainment lawyer before using.*
+
+*This is a template. Consult with an entertainment lawyer before use.*
