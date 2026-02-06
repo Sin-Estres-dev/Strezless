@@ -1,0 +1,214 @@
+// Strezless Music Platform Database Schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  artist        Artist?
+}
+
+model Artist {
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  stageName         String
+  legalName         String
+  biography         String?
+  avatarUrl         String?
+  websiteUrl        String?
+  
+  // Professional Industry Identifiers
+  ipiCode           String?   @unique // Interested Parties Information
+  isniCode          String?   @unique // International Standard Name Identifier
+  einNumber         String?   @unique // Employer Identification Number
+  
+  // Contact Information
+  contactEmail      String?
+  phoneNumber       String?
+  addressLine1      String?
+  addressLine2      String?
+  city              String?
+  stateProvince     String?
+  postalCode        String?
+  country           String?
+  
+  // Payment Details
+  paypalEmail       String?
+  bankAccountInfo   String?
+  taxIdNumber       String?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  songs             Song[]
+  albums            Album[]
+  collaborations    Collaboration[]
+  revenueRecords    Revenue[]
+  analyticsData     Analytics[]
+  
+  @@index([stageName])
+}
+
+model Song {
+  id                String    @id @default(cuid())
+  artistId          String
+  title             String
+  duration          Int       // Duration in seconds
+  releaseDate       DateTime?
+  
+  // Industry Standard Codes
+  isrcCode          String?   @unique // International Standard Recording Code
+  upcCode           String?            // Universal Product Code
+  iswcCode          String?   @unique // International Standard Musical Work Code
+  
+  // Music Metadata
+  genre             String?
+  subGenre          String?
+  mood              String?
+  tempo             Int?      // BPM
+  keySignature      String?
+  
+  // Audio Technical Details
+  audioFileUrl      String?
+  waveformData      String?
+  masteringStatus   String?   @default("unmastered")
+  
+  // Rights and Ownership
+  copyrightYear     Int?
+  publisherName     String?
+  writerSplits      Json?     // JSON array of writer percentages
+  
+  // Monetization
+  streamCount       Int       @default(0)
+  downloadCount     Int       @default(0)
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  artist            Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  albumId           String?
+  album             Album?    @relation(fields: [albumId], references: [id])
+  releaseId         String?
+  release           Release?  @relation(fields: [releaseId], references: [id])
+  collaborations    Collaboration[]
+  revenueRecords    Revenue[]
+  
+  @@index([artistId])
+  @@index([title])
+}
+
+model Album {
+  id                String    @id @default(cuid())
+  artistId          String
+  title             String
+  coverArtUrl       String?
+  releaseYear       Int?
+  
+  // Album Codes
+  upcCode           String?   @unique
+  catalogNumber     String?
+  
+  totalTracks       Int       @default(0)
+  recordLabel       String?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  artist            Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  songs             Song[]
+  
+  @@index([artistId])
+}
+
+model Release {
+  id                String    @id @default(cuid())
+  title             String
+  releaseDate       DateTime
+  
+  // Distribution Details
+  distributionType  String    // digital, physical, both
+  territories       String[]  // Countries/regions
+  platforms         String[]  // Spotify, Apple Music, etc
+  
+  // DDEX Compliance
+  ddexVersion       String?
+  ddexMetadata      Json?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  songs             Song[]
+  
+  @@index([releaseDate])
+}
+
+model Collaboration {
+  id                String    @id @default(cuid())
+  songId            String
+  artistId          String
+  role              String    // featured_artist, producer, writer, etc
+  creditName        String
+  splitPercentage   Float?    // Ownership/revenue split
+  
+  createdAt         DateTime  @default(now())
+  
+  song              Song      @relation(fields: [songId], references: [id], onDelete: Cascade)
+  artist            Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  
+  @@index([songId])
+  @@index([artistId])
+}
+
+model Revenue {
+  id                String    @id @default(cuid())
+  artistId          String
+  songId            String?
+  
+  platform          String    // Spotify, Apple Music, YouTube, etc
+  revenueType       String    // streaming, download, sync_license, etc
+  amount            Float
+  currency          String    @default("USD")
+  
+  periodStart       DateTime
+  periodEnd         DateTime
+  
+  // Detailed Metrics
+  streamCount       Int?
+  downloadCount     Int?
+  
+  createdAt         DateTime  @default(now())
+  
+  artist            Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  song              Song?     @relation(fields: [songId], references: [id])
+  
+  @@index([artistId])
+  @@index([songId])
+  @@index([periodStart])
+}
+
+model Analytics {
+  id                String    @id @default(cuid())
+  artistId          String
+  
+  metricType        String    // profile_views, song_plays, follower_count, etc
+  metricValue       Int
+  timestamp         DateTime  @default(now())
+  
+  metadata          Json?     // Additional context data
+  
+  artist            Artist    @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  
+  @@index([artistId])
+  @@index([metricType])
+  @@index([timestamp])
+}
