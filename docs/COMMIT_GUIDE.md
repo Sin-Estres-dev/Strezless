@@ -11,7 +11,7 @@ A helpful commit message answers: **What specific thing changed?**
 ### Structure
 
 ```
-Brief summary of the change (under 60 characters)
+Brief summary of the change (aim for 50 characters or less)
 
 Optional: Why this change was needed and any important context.
 ```
