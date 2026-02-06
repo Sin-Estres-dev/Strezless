@@ -37,6 +37,7 @@ To get a local copy up and running, follow these simple steps:
 ## Available Templates
 
 - **Split Sheets**: `/docs/splits/split-sheet-5-writers.md` - Track ownership for songs with multiple writers
+- **Music Metadata Guide**: `/docs/MUSIC-METADATA-GUIDE.md` - Comprehensive guide on music metadata, key identifiers (EIN, IPI, ISRC, ISWC, ISNI), and sample metadata management apps for independent artists
 
 ## Contributing
 
