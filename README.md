@@ -1,50 +1,62 @@
-# Strezless Musick Productionz
+# 🎵 Strezless - Independent Music Distribution Platform
 
-On a quest to fulfill a childhood dream, Sin Estres has launched a business pursuit and is determined to finish that which he started to the very last breath in him.
+**By Omar Dejesu Orrantia (Sin Estres)**
 
-## About
+Strezless is an open-source music distribution platform designed to empower independent artists with transparent royalty tracking, split sheet management, and direct distribution to major streaming platforms.
 
-Strezless Musick Productionz is a music production label founded by Sin Estres (Omar Orrantia). This repository contains documentation, templates, and resources to support the music production business from the ground up.
+---
 
-## What Can You Do?
+## 🚀 Project Status
 
-This repository helps you:
-- 📝 **Manage Rights**: Track song ownership and writer contributions with split sheet templates
-- 📄 **Legal Documentation**: Maintain proper records for PROs, publishers, and contracts
-- 🤝 **Collaborate**: Standardize documentation across team members and projects
-- 🎵 **Organize**: Keep all music business documentation in one place
+**Current Phase**: Legal Setup & Foundation
+**Next Phase**: Mobile App Development
+**Target Launch**: Q2 2026
 
-For a comprehensive list of capabilities and potential features, see [docs/CAPABILITIES.md](docs/CAPABILITIES.md).
+### ✅ Completed
+- [x] Database schema design
+- [x] Artist profile API
+- [x] PostgreSQL setup
+- [x] MIT License
+- [x] Legal documentation templates
 
-## Getting Started
+### 🔄 In Progress
+- [ ] Music industry registrations (MLC, SoundExchange, ISRC)
+- [ ] Mobile app development (React Native)
 
-To get a local copy up and running, follow these simple steps:
+---
 
-### Installation
+## 📱 Platform Features
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/Sin-Estres-dev/Strezless.git
-   ```
+### For Artists
+- ✅ Professional artist profiles
+- 🔄 Release management (albums, EPs, singles)
+- 🔄 ISRC code generation
+- 🔄 Automated split sheets
+- 📊 Real-time streaming analytics
+- 💰 Transparent royalty tracking
 
-2. Navigate to the repository
-   ```sh
-   cd Strezless
-   ```
+---
 
-3. Browse the templates in the `/docs` folder
+## 🛠️ Tech Stack
 
-## Available Templates
+**Backend**: Node.js + Express + PostgreSQL
+**Frontend** (Planned): React Native (iOS, Android, Web)
 
-- **Split Sheets**: `/docs/splits/split-sheet-5-writers.md` - Track ownership for songs with multiple writers
+---
 
-## Contributing
+## 📜 Legal & Compliance
 
-Experimenting with a music career take-off from scratch! Anyone with new ideas is welcomed, and contributions will definitely be taken into consideration.
+**EIN**: 86-1986359
+**License**: MIT (Open Source)
+**Contact**: strezless@gmail.com
 
-### Starring Artist
-**Sin Estres** (Omar Orrantia)
+See [docs/LEGAL_REQUIREMENTS.md](docs/LEGAL_REQUIREMENTS.md) for full checklist.
 
-## License
+---
 
-This project is open for collaboration and ideas sharing.
+## 📞 Contact
+
+**Omar Dejesu Orrantia (Sin Estres)**
+- Email: strezless@gmail.com
+- Phone: +1 (915) 337-2986
+- Website: https://sinestres.substack.com
