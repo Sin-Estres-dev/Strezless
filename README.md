@@ -33,7 +33,7 @@ Strezless Musick Productionz is a music production platform founded by Sin Estre
 
 ## Tech Stack
 
-- **Frontend**: Next.js 14, React 18, TypeScript
+- **Frontend**: Next.js 15.5.12, React 19, TypeScript
 - **Styling**: Tailwind CSS with custom Strezless theme
 - **Database**: PostgreSQL with Prisma ORM
 - **Validation**: Zod with custom industry code validators
