@@ -7,10 +7,10 @@ import { Prisma } from '@prisma/client';
 // GET - Retrieve specific artist by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const artistId = params.id;
+    const { id: artistId } = await params;
     
     const artistProfile = await strezlessDb.artist.findUnique({
       where: { id: artistId },
@@ -106,10 +106,10 @@ export async function GET(
 // PUT - Update artist profile
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const artistId = params.id;
+    const { id: artistId } = await params;
     const requestData = await request.json();
     
     // Validate update data
@@ -226,10 +226,10 @@ export async function PUT(
 // DELETE - Remove artist profile
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const artistId = params.id;
+    const { id: artistId } = await params;
     
     const artistToDelete = await strezlessDb.artist.findUnique({
       where: { id: artistId },
