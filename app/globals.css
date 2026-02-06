@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: system-ui, -apple-system, sans-serif;
+    --font-body: system-ui, -apple-system, sans-serif;
+  }
+  
+  body {
+    @apply bg-strezless-light text-strezless-dark;
+  }
+}
+
+@layer components {
+  .strezless-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .strezless-card {
+    @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow;
+  }
+  
+  .strezless-button-primary {
+    @apply px-6 py-3 bg-strezless-primary text-white rounded-lg hover:bg-strezless-secondary transition-colors font-medium;
+  }
+  
+  .strezless-button-secondary {
+    @apply px-6 py-3 bg-white text-strezless-primary border-2 border-strezless-primary rounded-lg hover:bg-strezless-primary hover:text-white transition-colors font-medium;
+  }
+}
