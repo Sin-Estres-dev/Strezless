@@ -19,24 +19,24 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "next": "^15.0.8",
+    "@hookform/resolvers": "^3.9.0",
+    "@prisma/client": "^5.19.0",
+    "next": "^15.5.12",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@prisma/client": "^5.19.0",
-    "zod": "^3.23.0",
     "react-hook-form": "^7.52.0",
-    "@hookform/resolvers": "^3.9.0"
+    "zod": "^3.23.0"
   },
   "devDependencies": {
-    "typescript": "^5.5.0",
     "@types/node": "^20.14.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.0",
     "autoprefixer": "^10.4.0",
-    "prisma": "^5.19.0",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^15.0.8"
+    "eslint-config-next": "^15.0.8",
+    "postcss": "^8.4.0",
+    "prisma": "^5.19.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.5.0"
   }
 }
