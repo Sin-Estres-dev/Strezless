@@ -1,0 +1,1 @@
+{"version":3,"file":"reauthorizeRequest.d.ts","sourceRoot":"","sources":["../../../src/models/reauthorizeRequest.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAA0B,MAAM,EAAE,MAAM,WAAW,CAAC;AAC3D,OAAO,EAAE,KAAK,EAAe,MAAM,SAAS,CAAC;AAE7C,iyBAAiyB;AACjyB,MAAM,WAAW,kBAAkB;IACjC,6FAA6F;IAC7F,MAAM,CAAC,EAAE,KAAK,CAAC;CAChB;AAED,eAAO,MAAM,wBAAwB,EAAE,MAAM,CAAC,kBAAkB,CAE9D,CAAC"}

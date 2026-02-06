@@ -1,0 +1,1 @@
+{"version":3,"file":"callbackConfiguration.js","sourceRoot":"","sources":["../../../src/models/callbackConfiguration.ts"],"names":[],"mappings":";AAAA;;;;GAIG;;;AAEH,oCAA0D;AAC1D,mDAAwE;AAU3D,QAAA,2BAA2B,GAAkC,IAAA,eAAM,EAC9E;IACE,cAAc,EAAE,CAAC,iBAAiB,EAAE,IAAA,cAAK,EAAC,qCAAoB,CAAC,CAAC;IAChE,WAAW,EAAE,CAAC,cAAc,EAAE,IAAA,eAAM,GAAE,CAAC;CACxC,CACF,CAAC"}

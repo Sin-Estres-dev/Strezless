@@ -1,0 +1,1 @@
+{"version":3,"file":"upcType.d.ts","sourceRoot":"","sources":["../../../src/models/upcType.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAE,MAAM,EAAc,MAAM,WAAW,CAAC;AAE/C;;GAEG;AACH,oBAAY,OAAO;IACjB,IAAI,UAAU;IACd,IAAI,UAAU;IACd,IAAI,UAAU;IACd,IAAI,UAAU;IACd,IAAI,UAAU;IACd,IAAI,UAAU;IACd,IAAI,UAAU;CACf;AAED;;GAEG;AACH,eAAO,MAAM,aAAa,EAAE,MAAM,CAAC,OAAO,CAA6B,CAAC"}
