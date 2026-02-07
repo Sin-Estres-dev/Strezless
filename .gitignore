@@ -1,3 +1,18 @@
+# Add: copilot-termux-setup/
+# Add: copilot-termux-setup/
+
+# Stage and commit the .gitignore file
+git add .gitignore
+git commit -m "Add copilot-termux-setup/ to .gitignore"
+
+# Clean the directory
+git clean -fd
+
+# Verify everything is cleaned
+git status
+
+# Force-push the branch to GitHub
+git push origin Sin-Estres-dev-patch-2 --force
 composer.phar
 /vendor/
 
