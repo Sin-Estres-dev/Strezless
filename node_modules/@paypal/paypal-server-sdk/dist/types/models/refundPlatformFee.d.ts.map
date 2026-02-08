@@ -1,1 +1,0 @@
-{"version":3,"file":"refundPlatformFee.d.ts","sourceRoot":"","sources":["../../../src/models/refundPlatformFee.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAgB,MAAM,EAAE,MAAM,WAAW,CAAC;AACjD,OAAO,EAAE,KAAK,EAAe,MAAM,SAAS,CAAC;AAE7C,kSAAkS;AAClS,MAAM,WAAW,iBAAiB;IAChC,6FAA6F;IAC7F,MAAM,EAAE,KAAK,CAAC;CACf;AAED,eAAO,MAAM,uBAAuB,EAAE,MAAM,CAAC,iBAAiB,CAE5D,CAAC"}
