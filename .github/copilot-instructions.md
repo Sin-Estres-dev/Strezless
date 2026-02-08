@@ -73,12 +73,12 @@ Base URL: `http://localhost:3000`
 - **Timestamps**: Include `created_at` and `updated_at` (auto-managed by triggers)
 - **Naming**: Use snake_case for column names, plural for table names
 - **Industry Identifiers**:
-  - IPI (Interested Parties Information): 11 digits
+  - IPI (Interested Parties Information): 9 numeric digits plus 2 check digits (11 characters total with formatting)
   - ISNI (International Standard Name Identifier): 16 digits
-  - ISRC (International Standard Recording Code): 12 characters
-  - ISWC (International Standard Musical Work Code): 11 digits + prefix
+  - ISRC (International Standard Recording Code): 12 characters (format: CC-XXX-YY-NNNNN)
+  - ISWC (International Standard Musical Work Code): Format T-XXXXXXXXX-C (11 characters including prefix T and check digit)
   - UPC (Universal Product Code): 12 digits
-  - EIN (Employer Identification Number): US tax ID
+  - EIN (Employer Identification Number): US tax ID (format: XX-XXXXXXX)
 
 ### Error Handling
 - Always wrap async database operations in try/catch
