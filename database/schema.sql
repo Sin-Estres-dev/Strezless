@@ -325,8 +325,8 @@ CREATE TABLE royalty_accruals (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     
-    -- Ensure valid financial calculations
-    CONSTRAINT valid_revenue CHECK (net_revenue = gross_revenue - deductions),
+    -- Ensure valid financial calculations (allows small rounding differences)
+    CONSTRAINT valid_revenue CHECK (ABS(net_revenue - (gross_revenue - deductions)) < 0.01),
     CONSTRAINT positive_revenue CHECK (gross_revenue >= 0)
 );
 
@@ -389,8 +389,10 @@ RETURNS TRIGGER AS $$
 DECLARE
     total_publishing DECIMAL(5,2);
     total_writer DECIMAL(5,2);
+    -- Tolerance for rounding differences (0.01 = 0.01%)
+    ROUNDING_TOLERANCE CONSTANT DECIMAL(5,2) := 0.01;
 BEGIN
-    -- Calculate totals for this track
+    -- Calculate totals for this track (excluding disputed splits)
     SELECT 
         COALESCE(SUM(publishing_share), 0),
         COALESCE(SUM(writer_share), 0)
@@ -399,8 +401,8 @@ BEGIN
     WHERE track_id = NEW.track_id
     AND status != 'disputed';
     
-    -- Allow slight rounding differences (within 0.01%)
-    IF total_publishing > 100.01 OR total_writer > 100.01 THEN
+    -- Allow slight rounding differences
+    IF total_publishing > (100.0 + ROUNDING_TOLERANCE) OR total_writer > (100.0 + ROUNDING_TOLERANCE) THEN
         RAISE EXCEPTION 'Total splits cannot exceed 100%% (Publishing: %, Writer: %)', total_publishing, total_writer;
     END IF;
     
@@ -425,7 +427,7 @@ CREATE TABLE pro_registrations (
     pro_territory VARCHAR(100), -- 'US', 'Canada', 'UK', 'Germany', etc.
     
     -- Registration Details
-    registration_number VARCHAR(100) UNIQUE,
+    registration_number VARCHAR(100),
     work_title VARCHAR(255) NOT NULL,
     alternate_titles TEXT[], -- Array of alternate titles
     
@@ -456,6 +458,7 @@ CREATE INDEX idx_pro_registrations_track ON pro_registrations(track_id);
 CREATE INDEX idx_pro_registrations_artist ON pro_registrations(artist_id);
 CREATE INDEX idx_pro_registrations_status ON pro_registrations(registration_status);
 CREATE INDEX idx_pro_registrations_pro ON pro_registrations(pro_name);
+CREATE UNIQUE INDEX idx_pro_registrations_unique ON pro_registrations(track_id, pro_name, registration_number) WHERE registration_number IS NOT NULL;
 
 -- Metadata Validation Log
 CREATE TABLE metadata_validation_log (
