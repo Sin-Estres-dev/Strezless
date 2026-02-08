@@ -37,6 +37,11 @@ To get a local copy up and running, follow these simple steps:
 ## Available Templates
 
 - **Split Sheets**: `/docs/splits/split-sheet-5-writers.md` - Track ownership for songs with multiple writers
+- **Split Sheet — No Te Vayas Lejos**: `/docs/splits/no-te-vayas-lejos.md` - Metadata & ownership for the single
+
+## Catalog
+
+- **Seed Data**: `/database/seed-catalog.sql` - Artist profile and release metadata for "No Te Vayas Lejos" by Sin Estres
 
 ## Contributing
 
