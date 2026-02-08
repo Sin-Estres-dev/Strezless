@@ -1,23 +1,54 @@
-# Add: copilot-termux-setup/
-# Add: copilot-termux-setup/
+# Dependencies
+node_modules/
+vendor/
 
-# Stage and commit the .gitignore file
-git add .gitignore
-git commit -m "Add copilot-termux-setup/ to .gitignore"
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
 
-# Clean the directory
-git clean -fd
+# Build outputs
+dist/
+build/
+.next/
+out/
 
-# Verify everything is cleaned
-git status
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Force-push the branch to GitHub
-git push origin Sin-Estres-dev-patch-2 --force
+# Package managers
 composer.phar
-/vendor/
 
-# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
+# OS files
+.DS_Store
+Thumbs.db
+
+# Project-specific
 copilot-termux-setup/
-copilot-termux-setup/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Sensitive data
+*.key
+*.pem
+secrets/
+credentials/
+
+# Database
+*.sqlite
+*.db

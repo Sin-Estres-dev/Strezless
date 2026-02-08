@@ -1,1 +1,0 @@
-{"version":3,"file":"activityTimestamps.d.ts","sourceRoot":"","sources":["../../../src/models/activityTimestamps.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAoB,MAAM,EAAU,MAAM,WAAW,CAAC;AAE7D,iHAAiH;AACjH,MAAM,WAAW,kBAAkB;IACjC,gQAAgQ;IAChQ,UAAU,CAAC,EAAE,MAAM,CAAC;IACpB,gQAAgQ;IAChQ,UAAU,CAAC,EAAE,MAAM,CAAC;CACrB;AAED,eAAO,MAAM,wBAAwB,EAAE,MAAM,CAAC,kBAAkB,CAG9D,CAAC"}

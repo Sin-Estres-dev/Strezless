@@ -1,1 +1,0 @@
-{"version":3,"file":"checkoutPaymentIntent.d.ts","sourceRoot":"","sources":["../../../src/models/checkoutPaymentIntent.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAE,MAAM,EAAc,MAAM,WAAW,CAAC;AAE/C;;GAEG;AACH,oBAAY,qBAAqB;IAC/B,OAAO,YAAY;IACnB,SAAS,cAAc;CACxB;AAED;;GAEG;AACH,eAAO,MAAM,2BAA2B,EAAE,MAAM,CAAC,qBAAqB,CAGrE,CAAC"}

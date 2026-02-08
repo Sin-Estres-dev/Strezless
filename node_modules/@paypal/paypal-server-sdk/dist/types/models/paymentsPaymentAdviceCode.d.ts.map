@@ -1,1 +1,0 @@
-{"version":3,"file":"paymentsPaymentAdviceCode.d.ts","sourceRoot":"","sources":["../../../src/models/paymentsPaymentAdviceCode.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAE,MAAM,EAAc,MAAM,WAAW,CAAC;AAE/C;;GAEG;AACH,oBAAY,yBAAyB;IACnC,eAAe,OAAO;IACtB,eAAe,OAAO;IACtB,eAAe,OAAO;IACtB,eAAe,OAAO;CACvB;AAED;;GAEG;AACH,eAAO,MAAM,+BAA+B,EAAE,MAAM,CAAC,yBAAyB,CAG7E,CAAC"}

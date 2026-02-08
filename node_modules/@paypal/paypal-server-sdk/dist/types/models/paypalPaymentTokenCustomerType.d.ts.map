@@ -1,1 +1,0 @@
-{"version":3,"file":"paypalPaymentTokenCustomerType.d.ts","sourceRoot":"","sources":["../../../src/models/paypalPaymentTokenCustomerType.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAE,MAAM,EAAc,MAAM,WAAW,CAAC;AAE/C;;GAEG;AACH,oBAAY,8BAA8B;IACxC,QAAQ,aAAa;IACrB,QAAQ,aAAa;CACtB;AAED;;GAEG;AACH,eAAO,MAAM,oCAAoC,EAAE,MAAM,CAAC,8BAA8B,CAGvF,CAAC"}
