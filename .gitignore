@@ -1,0 +1,60 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+package-lock.json
+yarn.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build / output
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Composer
+composer.phar
+/vendor/
+/composer.lock
+
+# Database
+*.db
+*.sqlite
+
+# Private data
+**/private/
+**/*-private.json
+**/*-secrets*
+
+# Logs
+logs/
+*.log
+
+# IDE / editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Termux / local dev artifacts
+$PREFIX/var/lib/postgresql
+/data/data/com.termux/files/home/.cache
+
+# Project-specific local folders
+copilot-termux-setup/
+
+# Ignore any compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
