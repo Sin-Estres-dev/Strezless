@@ -20,7 +20,7 @@ INSERT INTO artists (
     gen_random_uuid(),
     'Sin Estres',
     'Omar Orrantia',
-    'contact@strezlessmusick.com',             -- UPDATE with actual email
+    'contact@strezlessmusick.com',
     'Bilingual Latin hip hop artist and founder of Strezless Musick Productionz. '
     'Sin Estres shares deeply personal stories touching on trauma, depression, faith, '
     'and resilience through a mix of English and Spanish lyrics.',
@@ -47,7 +47,7 @@ INSERT INTO releases (
     'No Te Vayas Lejos',
     'single',
     '2020-08-31',
-    'REPLACE_WITH_UPC',        -- TODO: Retrieve from DistroKid dashboard
+    NULL,                      -- TODO: Set UPC after retrieving from DistroKid dashboard
     NULL,
     'Strezless Musick Productionz',
     '℗ 2020 Strezless Musick Productionz',
@@ -69,7 +69,7 @@ INSERT INTO tracks (
     'No Te Vayas Lejos',
     1,
     173,
-    'REPLACE_WITH_ISRC',       -- TODO: Retrieve from DistroKid dashboard
+    'PENDING_ISRC',            -- TODO: Replace with actual ISRC from DistroKid dashboard
     false,
     'es'                       -- Spanish
 );

@@ -15,7 +15,7 @@ Instructions:
 ## Song Information
 - Song Title: No Te Vayas Lejos
 - Alternate/Working Title: N/A
-- ISWC / ISRC: REPLACE_WITH_ISRC *(retrieve from DistroKid dashboard)*
+- ISWC / ISRC: *(retrieve from DistroKid dashboard)*
 - Date: 2020-08-31
 - Recording/Release: Single — released via DistroKid
 - Admin / Contact: Strezless Musick Productionz
