@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model ArtistProfile {
+  profileId        String   @id @default(cuid())
+  recordCreated    DateTime @default(now())
+  lastModified     DateTime @updatedAt
+
+  legalFullName    String
+  performanceName  String?
+  dateOfBirth      DateTime?
+  contactEmail     String   @unique
+  
+  interestedPartyInfo       String?  @unique // IPI
+  standardNameId            String?  @unique // ISNI
+  musicalWorkCode           String?  @unique // ISWC
+  digitalDataExchangeId     String?  // DDEX
+  universalProductNum       String?  // UPN
+  employerIdNumber          String?  @unique // EIN
+  internalUniqueId          String   @unique @default(cuid()) // UUID
+  
+  trackRecords     TrackRecord[]
+
+  @@map("artist_profiles")
+}
+
+model TrackRecord {
+  recordId         String   @id @default(cuid())
+  addedOn          DateTime @default(now())
+  updatedOn        DateTime @updatedAt
+
+  trackTitle       String
+  albumTitle       String?
+  durationSeconds  Int
+  musicGenre       String?
+
+  universalProdCode         String?  // UPC
+  universalProdNumber       String?  // UPN
+  intlStandardRecordingCode String?  // ISRC
+  dataExchangeMetadata      String?  // DDEX
+
+  belongsToArtist  String
+  artistProfile    ArtistProfile @relation(fields: [belongsToArtist], references: [profileId])
+
+  @@map("track_records")
+}
