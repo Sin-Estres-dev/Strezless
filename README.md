@@ -47,6 +47,8 @@ To get a local copy up and running, follow these simple steps:
 
 Experimenting with a music career take-off from scratch! Anyone with new ideas is welcomed, and contributions will definitely be taken into consideration.
 
+When contributing, please write clear commit messages that describe your changes. See [docs/COMMIT_GUIDE.md](docs/COMMIT_GUIDE.md) for guidance on writing helpful commit messages.
+
 ### Starring Artist
 **Sin Estres** (Omar Orrantia)
 
