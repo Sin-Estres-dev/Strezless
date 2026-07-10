@@ -1,0 +1,1 @@
+{"version":3,"file":"customerResponse.js","sourceRoot":"","sources":["../../../src/models/customerResponse.ts"],"names":[],"mappings":";AAAA;;;;GAIG;;;AAEH,oCAA6D;AAUhD,QAAA,sBAAsB,GAA6B,IAAA,eAAM,EAAC;IACrE,EAAE,EAAE,CAAC,IAAI,EAAE,IAAA,iBAAQ,EAAC,IAAA,eAAM,GAAE,CAAC,CAAC;IAC9B,kBAAkB,EAAE,CAAC,sBAAsB,EAAE,IAAA,iBAAQ,EAAC,IAAA,eAAM,GAAE,CAAC,CAAC;CACjE,CAAC,CAAC"}

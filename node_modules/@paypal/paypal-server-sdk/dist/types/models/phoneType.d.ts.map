@@ -1,0 +1,1 @@
+{"version":3,"file":"phoneType.d.ts","sourceRoot":"","sources":["../../../src/models/phoneType.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAE,MAAM,EAAc,MAAM,WAAW,CAAC;AAE/C;;GAEG;AACH,oBAAY,SAAS;IACnB,GAAG,QAAQ;IACX,IAAI,SAAS;IACb,MAAM,WAAW;IACjB,KAAK,UAAU;IACf,KAAK,UAAU;CAChB;AAED;;GAEG;AACH,eAAO,MAAM,eAAe,EAAE,MAAM,CAAC,SAAS,CAA+B,CAAC"}

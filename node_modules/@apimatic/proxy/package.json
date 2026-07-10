@@ -1,0 +1,59 @@
+{
+  "name": "@apimatic/proxy",
+  "author": "APIMatic Ltd.",
+  "version": "0.1.4",
+  "license": "MIT",
+  "description": "provides utilities to route requests through a configurable proxy",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "umd",
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
+    "es/**/*.js",
+    "es/**/*.d.ts",
+    "src",
+    "LICENSE.md"
+  ],
+  "engines": {
+    "node": ">=14.15.0 || >=16.0.0"
+  },
+  "scripts": {
+    "clean": "rimraf lib es umd tsconfig.tsbuildinfo",
+    "test": "jest --ci --coverage --maxWorkers=2 --passWithNoTests",
+    "build": "npm run clean && tsc && rollup -c --bundleConfigAsCjs && npm run annotate:es",
+    "annotate:es": "babel es --out-dir es --no-babelrc --plugins annotate-pure-calls",
+    "preversion": "npm run test",
+    "prepublishOnly": "npm run build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "lint": "tslint --project .",
+    "lint:fix": "tslint --project . --fix",
+    "check-style": "prettier --check \"{src,test}/**/*.ts\"",
+    "check-style:fix": "prettier --write \"{src,test}/**/*.ts\""
+  },
+  "size-limit": [
+    {
+      "path": "es/index.js",
+      "limit": "5 KB"
+    }
+  ],
+  "browser": {
+    "./lib/proxyAgent.js": "./lib/proxyAgentBrowser.js"
+  },
+  "dependencies": {
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:apimatic/apimatic-js-runtime.git",
+    "directory": "packages/proxy"
+  },
+  "gitHead": "ceeb16dad385d3c165b326905e066f62fb3b2281"
+}
