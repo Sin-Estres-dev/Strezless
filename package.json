@@ -1,0 +1,30 @@
+{
+  "name": "strezless-music-metadata",
+  "version": "1.0.0",
+  "description": "Complete music production suite: metadata management, split sheets, royalty tracking, and distribution",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node src/testSplitSheet.js",
+    "seed": "node database/seed.js"
+  },
+  "keywords": ["music", "metadata", "royalties", "split-sheets", "distribution"],
+  "author": "Omar Orrantia (Sin Estres)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.8",
+    "dotenv": "^16.0.3",
+    "mongoose": "^7.0.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "inquirer": "^8.2.5",
+    "colors": "^1.4.0",
+    "uuid": "^9.0.0",
+    "moment": "^2.29.4",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22"
+  }
+}
