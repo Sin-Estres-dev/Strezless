@@ -1,65 +1,49 @@
-#!/usr/bin/env node
-
-require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const helmet = require('helmet');
-const path = require('path');
 const fs = require('fs');
-
-// Import routes
-const artistRoutes = require('./routes/artists');
-const splitSheetRoutes = require('./routes/splitsheets');
-const distributionRoutes = require('./routes/distribution');
+const path = require('path');
+const crypto = require('crypto');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(express.json()); // Allows us to read JSON data sent to the API
+app.use(express.static("public"));
 
-// Middleware
-app.use(helmet());
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../public')));
+// Path to our local database file
+const DATA_DIR = path.join(__dirname, '../data');
+const DATA_FILE = path.join(DATA_DIR, 'tracks.json');
 
-// View engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
+// Create data folder and file if they don't exist
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, '[]');
 
-// Routes
-app.use('/api/artists', artistRoutes);
-app.use('/api/split-sheets', splitSheetRoutes);
-app.use('/api/distribution', distributionRoutes);
+// Helper functions to read and write data
+const getTracks = () => JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+const saveTracks = (tracks) => fs.writeFileSync(DATA_FILE, JSON.stringify(tracks, null, 2));
 
-// Home page
-app.get('/', (req, res) => {
-  res.render('index', { 
-    title: 'Strezless Music Metadata Suite',
-    version: '1.0.0'
-  });
+// ROUTE 1: Add a new track with all metadata fields
+app.post('/api/tracks', (req, res) => {
+    const tracks = getTracks();
+    
+    // Create the new track object with a unique ID and timestamp
+    const newTrack = {
+        id: crypto.randomUUID(),
+        ...req.body, // This captures all the metadata fields sent in the request
+        createdAt: new Date().toISOString()
+    };
+    
+    tracks.push(newTrack);
+    saveTracks(tracks);
+    
+    res.status(201).json({ message: "Track metadata saved successfully!", track: newTrack });
 });
 
-// Dashboard
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard', { title: 'Dashboard' });
+// ROUTE 2: View all tracks
+app.get('/api/tracks', (req, res) => {
+    const tracks = getTracks();
+    res.json(tracks);
 });
 
-// Error handling
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: err.message });
-});
-
-// 404
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
-
+// Start the server
+const PORT = 3000;
 app.listen(PORT, () => {
-  console.log('\n🎵 Strezless Music Metadata Suite');
-  console.log(`✓ Server running on http://localhost:${PORT}`);
-  console.log(`✓ Dashboard: http://localhost:${PORT}/dashboard\n`);
+    console.log(`🎵 Strezless Music Metadata API is running on http://localhost:${PORT}`);
 });
-
-module.exports = app;
