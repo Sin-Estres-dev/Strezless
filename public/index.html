@@ -8,7 +8,6 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 20px auto; padding: 15px; background: #f4f4f9; color: #333; }
         h1, h2 { text-align: center; color: #2c3e50; }
         
-        /* Form & Button Styles */
         .form-container, .export-container { background: white; padding: 20px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .form-container { border-left: 5px solid #3498db; }
         .export-container { border-left: 5px solid #2ecc71; text-align: center; }
@@ -21,7 +20,6 @@
         .message { text-align: center; margin-top: 10px; font-weight: bold; color: green; display: none; }
         .section-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin: 15px 0 10px 0; border-bottom: 2px solid #eee; padding-bottom: 5px;}
 
-        /* Track Card Styles */
         .track-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #e67e22; }
         .track-card h3 { margin: 0 0 10px 0; color: #e67e22; }
         .track-card p { margin: 5px 0; font-size: 15px; }
@@ -59,7 +57,17 @@
                 <option value="true">Explicit Content: Yes</option>
             </select>
 
-            <div class="section-title">Rights & Royalties (Crucial!)</div>
+            <div class="section-title">Composition & Work IDs</div>
+            <input type="text" id="iswc" placeholder="ISWC (e.g., T-123456789-0)">
+            <input type="text" id="workId" placeholder="Internal Work ID">
+
+            <div class="section-title">Label & Publisher (Strezless Musick Productionz)</div>
+            <input type="text" id="labelName" placeholder="Label Name" value="Strezless Musick Productionz">
+            <input type="text" id="labelISNI" placeholder="Label ISNI (16 digits)">
+            <input type="text" id="labelIPI" placeholder="Label IPI / CAE Number">
+            <input type="text" id="labelEIN" placeholder="Label EIN (Tax ID)">
+
+            <div class="section-title">Rights & Royalties</div>
             <input type="text" id="songwriters" placeholder="Songwriters (Separate multiple with commas)">
             <input type="text" id="proAffiliation" placeholder="PRO Affiliation (e.g., ASCAP, BMI)">
             <input type="text" id="soundRecordingCopyrightOwner" placeholder="Sound Recording Copyright (℗)">
@@ -92,11 +100,11 @@
                         card.innerHTML = `
                             <h3>${track.trackTitle}</h3>
                             <p><span class="label">Artist:</span> ${track.artistName}</p>
-                            <p><span class="label">Album:</span> ${track.albumTitle || 'N/A'}</p>
+                            <p><span class="label">Label:</span> ${track.labelName || 'N/A'}</p>
                             <p><span class="label">ISRC:</span> ${track.isrc || 'Pending'}</p>
+                            <p><span class="label">ISWC:</span> ${track.iswc || 'Pending'}</p>
                             <p><span class="label">Songwriters:</span> ${writers}</p>
                             <p><span class="label">PRO:</span> ${track.proAffiliation || 'N/A'}</p>
-                            <p><span class="label">Copyright (℗):</span> ${track.soundRecordingCopyrightOwner || 'N/A'}</p>
                         `;
                         container.appendChild(card);
                     });
@@ -113,10 +121,15 @@
                 genre: document.getElementById('genre').value,
                 language: document.getElementById('language').value,
                 isrc: document.getElementById('isrc').value,
+                iswc: document.getElementById('iswc').value,
+                workId: document.getElementById('workId').value,
+                labelName: document.getElementById('labelName').value,
+                labelISNI: document.getElementById('labelISNI').value,
+                labelIPI: document.getElementById('labelIPI').value,
+                labelEIN: document.getElementById('labelEIN').value,
                 bpm: document.getElementById('bpm').value,
                 key: document.getElementById('key').value,
                 isExplicit: document.getElementById('isExplicit').value === 'true',
-                // Split songwriters by comma and remove extra spaces
                 songwriters: document.getElementById('songwriters').value.split(',').map(s => s.trim()).filter(s => s),
                 proAffiliation: document.getElementById('proAffiliation').value,
                 soundRecordingCopyrightOwner: document.getElementById('soundRecordingCopyrightOwner').value,

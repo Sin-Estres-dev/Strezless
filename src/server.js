@@ -5,7 +5,7 @@ const crypto = require('crypto');
 
 const app = express();
 app.use(express.json());
-app.use(express.static("public")); // Serves our web dashboard
+app.use(express.static("public"));
 
 const DATA_DIR = path.join(__dirname, '../data');
 const DATA_FILE = path.join(DATA_DIR, 'tracks.json');
@@ -34,20 +34,19 @@ app.get('/api/tracks', (req, res) => {
     res.json(getTracks());
 });
 
-// ROUTE 3: EXPORT TO CSV (The Distributor Button)
+// ROUTE 3: EXPORT TO CSV (Updated with Label & Publishing IDs)
 app.get('/api/export', (req, res) => {
     const tracks = getTracks();
     if (tracks.length === 0) return res.status(404).send("No tracks to export.");
 
-    // Define the columns for the CSV
     const headers = [
         'Track Title', 'Artist Name', 'Album Title', 'Release Date', 
-        'Genre', 'Language', 'ISRC', 'Songwriters', 'PRO Affiliation', 
-        'BPM', 'Key', 'Is Explicit', 'Sound Recording Copyright (P)', 
-        'Composition Copyright (C)'
+        'Genre', 'Language', 'ISRC', 'ISWC', 'Work ID',
+        'Label Name', 'Label ISNI', 'Label IPI', 'Label EIN',
+        'Songwriters', 'PRO Affiliation', 'BPM', 'Key', 'Is Explicit', 
+        'Sound Recording Copyright (P)', 'Composition Copyright (C)'
     ];
 
-    // Helper to safely format text for CSV (handles commas in text)
     const escapeCsv = (val) => {
         if (val === undefined || val === null) return '';
         const str = String(val);
@@ -57,13 +56,14 @@ app.get('/api/export', (req, res) => {
         return str;
     };
 
-    // Convert tracks to CSV rows
     const rows = tracks.map(track => {
         const songwriters = Array.isArray(track.songwriters) ? track.songwriters.join('; ') : (track.songwriters || '');
         return [
             escapeCsv(track.trackTitle), escapeCsv(track.artistName), escapeCsv(track.albumTitle),
             escapeCsv(track.releaseDate), escapeCsv(track.genre), escapeCsv(track.language),
-            escapeCsv(track.isrc), escapeCsv(songwriters), escapeCsv(track.proAffiliation),
+            escapeCsv(track.isrc), escapeCsv(track.iswc), escapeCsv(track.workId),
+            escapeCsv(track.labelName), escapeCsv(track.labelISNI), escapeCsv(track.labelIPI), escapeCsv(track.labelEIN),
+            escapeCsv(songwriters), escapeCsv(track.proAffiliation),
             escapeCsv(track.bpm), escapeCsv(track.key), escapeCsv(track.isExplicit),
             escapeCsv(track.soundRecordingCopyrightOwner), escapeCsv(track.compositionCopyrightOwner)
         ].join(',');
@@ -71,7 +71,6 @@ app.get('/api/export', (req, res) => {
 
     const csvContent = [headers.join(','), ...rows].join('\n');
 
-    // Force the browser to download the file
     res.header('Content-Type', 'text/csv');
     res.header('Content-Disposition', 'attachment; filename=strezless_metadata.csv');
     res.send(csvContent);
