@@ -8,12 +8,18 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 20px auto; padding: 15px; background: #f4f4f9; color: #333; }
         h1, h2 { text-align: center; color: #2c3e50; }
         
-        /* Form Styles */
-        .form-container { background: white; padding: 20px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #3498db; }
+        /* Form & Button Styles */
+        .form-container, .export-container { background: white; padding: 20px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .form-container { border-left: 5px solid #3498db; }
+        .export-container { border-left: 5px solid #2ecc71; text-align: center; }
         input, select { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #3498db; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        button, .export-btn { width: 100%; padding: 12px; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; box-sizing: border-box;}
+        button { background: #3498db; }
         button:hover { background: #2980b9; }
+        .export-btn { background: #2ecc71; }
+        .export-btn:hover { background: #27ae60; }
         .message { text-align: center; margin-top: 10px; font-weight: bold; color: green; display: none; }
+        .section-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin: 15px 0 10px 0; border-bottom: 2px solid #eee; padding-bottom: 5px;}
 
         /* Track Card Styles */
         .track-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #e67e22; }
@@ -25,16 +31,40 @@
 <body>
     <h1>🎵 Strezless Metadata</h1>
 
-    <!-- ADD TRACK FORM -->
+    <!-- EXPORT BUTTON -->
+    <div class="export-container">
+        <h2>Distributor Export</h2>
+        <p>Download your entire catalog as a CSV file for DistroKid, TuneCore, etc.</p>
+        <a href="/api/export" class="export-btn">Download CSV</a>
+    </div>
+
+    <!-- FULL METADATA FORM -->
     <div class="form-container">
         <h2>Add New Track</h2>
         <form id="trackForm">
-            <input type="text" id="trackTitle" placeholder="Track Title" required>
-            <input type="text" id="artistName" placeholder="Artist Name" required>
+            <div class="section-title">Basic Info</div>
+            <input type="text" id="trackTitle" placeholder="Track Title *" required>
+            <input type="text" id="artistName" placeholder="Artist Name *" required>
             <input type="text" id="albumTitle" placeholder="Album Title">
             <input type="date" id="releaseDate" placeholder="Release Date">
-            <input type="text" id="isrc" placeholder="ISRC (e.g., US1234567890)">
             <input type="text" id="genre" placeholder="Genre">
+            <input type="text" id="language" placeholder="Language (e.g., English/Spanish)">
+
+            <div class="section-title">Identifiers & Technical</div>
+            <input type="text" id="isrc" placeholder="ISRC (e.g., US1234567890)">
+            <input type="number" id="bpm" placeholder="BPM (Tempo)">
+            <input type="text" id="key" placeholder="Musical Key (e.g., C Minor)">
+            <select id="isExplicit">
+                <option value="false">Explicit Content: No</option>
+                <option value="true">Explicit Content: Yes</option>
+            </select>
+
+            <div class="section-title">Rights & Royalties (Crucial!)</div>
+            <input type="text" id="songwriters" placeholder="Songwriters (Separate multiple with commas)">
+            <input type="text" id="proAffiliation" placeholder="PRO Affiliation (e.g., ASCAP, BMI)">
+            <input type="text" id="soundRecordingCopyrightOwner" placeholder="Sound Recording Copyright (℗)">
+            <input type="text" id="compositionCopyrightOwner" placeholder="Composition Copyright (©)">
+
             <button type="submit">Save Track Metadata</button>
             <p id="successMsg" class="message">Track saved successfully!</p>
         </form>
@@ -45,50 +75,54 @@
     <div id="tracks-container">Loading tracks...</div>
 
     <script>
-        // Function to load and display tracks
         function loadTracks() {
             fetch('/api/tracks')
                 .then(response => response.json())
                 .then(tracks => {
                     const container = document.getElementById('tracks-container');
                     container.innerHTML = ''; 
-                    
                     if (tracks.length === 0) {
                         container.innerHTML = '<p style="text-align:center;">No tracks found yet.</p>';
                         return;
                     }
-
-                    // Show newest tracks first
                     tracks.reverse().forEach(track => {
                         const card = document.createElement('div');
                         card.className = 'track-card';
+                        const writers = Array.isArray(track.songwriters) ? track.songwriters.join(', ') : (track.songwriters || 'N/A');
                         card.innerHTML = `
                             <h3>${track.trackTitle}</h3>
                             <p><span class="label">Artist:</span> ${track.artistName}</p>
                             <p><span class="label">Album:</span> ${track.albumTitle || 'N/A'}</p>
                             <p><span class="label">ISRC:</span> ${track.isrc || 'Pending'}</p>
-                            <p><span class="label">Release Date:</span> ${track.releaseDate || 'Pending'}</p>
-                            <p><span class="label">Genre:</span> ${track.genre || 'N/A'}</p>
+                            <p><span class="label">Songwriters:</span> ${writers}</p>
+                            <p><span class="label">PRO:</span> ${track.proAffiliation || 'N/A'}</p>
+                            <p><span class="label">Copyright (℗):</span> ${track.soundRecordingCopyrightOwner || 'N/A'}</p>
                         `;
                         container.appendChild(card);
                     });
                 });
         }
 
-        // Handle form submission
         document.getElementById('trackForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page from reloading
-
+            e.preventDefault();
             const newTrack = {
                 trackTitle: document.getElementById('trackTitle').value,
                 artistName: document.getElementById('artistName').value,
                 albumTitle: document.getElementById('albumTitle').value,
                 releaseDate: document.getElementById('releaseDate').value,
+                genre: document.getElementById('genre').value,
+                language: document.getElementById('language').value,
                 isrc: document.getElementById('isrc').value,
-                genre: document.getElementById('genre').value
+                bpm: document.getElementById('bpm').value,
+                key: document.getElementById('key').value,
+                isExplicit: document.getElementById('isExplicit').value === 'true',
+                // Split songwriters by comma and remove extra spaces
+                songwriters: document.getElementById('songwriters').value.split(',').map(s => s.trim()).filter(s => s),
+                proAffiliation: document.getElementById('proAffiliation').value,
+                soundRecordingCopyrightOwner: document.getElementById('soundRecordingCopyrightOwner').value,
+                compositionCopyrightOwner: document.getElementById('compositionCopyrightOwner').value
             };
 
-            // Send to our API
             fetch('/api/tracks', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -96,19 +130,13 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Show success message
                 document.getElementById('successMsg').style.display = 'block';
                 setTimeout(() => document.getElementById('successMsg').style.display = 'none', 3000);
-                
-                // Clear the form
                 document.getElementById('trackForm').reset();
-                
-                // Reload the track list
                 loadTracks();
             });
         });
 
-        // Load tracks when the page first opens
         loadTracks();
     </script>
 </body>
