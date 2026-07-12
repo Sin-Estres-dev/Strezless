@@ -11,7 +11,8 @@
         .form-container, .export-container { background: white; padding: 20px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .form-container { border-left: 5px solid #3498db; }
         .export-container { border-left: 5px solid #2ecc71; text-align: center; }
-        input, select { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; font-family: inherit;}
+        textarea { resize: vertical; min-height: 60px; }
         button, .export-btn { width: 100%; padding: 12px; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; box-sizing: border-box;}
         button { background: #3498db; }
         button:hover { background: #2980b9; }
@@ -24,19 +25,18 @@
         .track-card h3 { margin: 0 0 10px 0; color: #e67e22; }
         .track-card p { margin: 5px 0; font-size: 15px; }
         .label { font-weight: bold; color: #555; }
+        .legal-badge { display: inline-block; background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-top: 5px;}
     </style>
 </head>
 <body>
     <h1>🎵 Strezless Metadata</h1>
 
-    <!-- EXPORT BUTTON -->
     <div class="export-container">
         <h2>Distributor Export</h2>
         <p>Download your entire catalog as a CSV file for DistroKid, TuneCore, etc.</p>
         <a href="/api/export" class="export-btn">Download CSV</a>
     </div>
 
-    <!-- FULL METADATA FORM -->
     <div class="form-container">
         <h2>Add New Track</h2>
         <form id="trackForm">
@@ -61,7 +61,7 @@
             <input type="text" id="iswc" placeholder="ISWC (e.g., T-123456789-0)">
             <input type="text" id="workId" placeholder="Internal Work ID">
 
-            <div class="section-title">Label & Publisher (Strezless Musick Productionz)</div>
+            <div class="section-title">Label & Publisher</div>
             <input type="text" id="labelName" placeholder="Label Name" value="Strezless Musick Productionz">
             <input type="text" id="labelISNI" placeholder="Label ISNI (16 digits)">
             <input type="text" id="labelIPI" placeholder="Label IPI / CAE Number">
@@ -70,15 +70,25 @@
             <div class="section-title">Rights & Royalties</div>
             <input type="text" id="songwriters" placeholder="Songwriters (Separate multiple with commas)">
             <input type="text" id="proAffiliation" placeholder="PRO Affiliation (e.g., ASCAP, BMI)">
-            <input type="text" id="soundRecordingCopyrightOwner" placeholder="Sound Recording Copyright (℗)">
-            <input type="text" id="compositionCopyrightOwner" placeholder="Composition Copyright (©)">
+            <input type="text" id="soundRecordingCopyrightOwner" placeholder="Sound Recording Copyright (P)">
+            <input type="text" id="compositionCopyrightOwner" placeholder="Composition Copyright (C)">
+
+            <div class="section-title">Legal & Licensing (Protect Your Masters)</div>
+            <select id="licenseType">
+                <option value="All Rights Reserved">All Rights Reserved (Standard Protection)</option>
+                <option value="Sync Licensing Available">Sync Licensing Available (For TV/Film/Ads)</option>
+                <option value="Non-Exclusive Lease">Non-Exclusive Lease (Beat Leasing)</option>
+                <option value="Exclusive Rights Sold">Exclusive Rights Sold</option>
+                <option value="Custom License">Custom License</option>
+            </select>
+            <textarea id="usageTerms" placeholder="Usage Terms / Restrictions (e.g., No sampling without permission, must clear interpolations)"></textarea>
+            <input type="text" id="licensingContact" placeholder="Contact for Licensing (Email or Website)">
 
             <button type="submit">Save Track Metadata</button>
             <p id="successMsg" class="message">Track saved successfully!</p>
         </form>
     </div>
 
-    <!-- TRACKS LIST -->
     <h2>Your Catalog</h2>
     <div id="tracks-container">Loading tracks...</div>
 
@@ -97,14 +107,21 @@
                         const card = document.createElement('div');
                         card.className = 'track-card';
                         const writers = Array.isArray(track.songwriters) ? track.songwriters.join(', ') : (track.songwriters || 'N/A');
+                        
+                        let badgeColor = '#e74c3c'; 
+                        if (track.licenseType === 'Sync Licensing Available') badgeColor = '#f39c12'; 
+                        if (track.licenseType === 'Non-Exclusive Lease') badgeColor = '#3498db'; 
+
                         card.innerHTML = `
                             <h3>${track.trackTitle}</h3>
+                            <span class="legal-badge" style="background:${badgeColor}">${track.licenseType || 'All Rights Reserved'}</span>
                             <p><span class="label">Artist:</span> ${track.artistName}</p>
                             <p><span class="label">Label:</span> ${track.labelName || 'N/A'}</p>
-                            <p><span class="label">ISRC:</span> ${track.isrc || 'Pending'}</p>
-                            <p><span class="label">ISWC:</span> ${track.iswc || 'Pending'}</p>
+                            <p><span class="label">ISRC:</span> ${track.isrc || 'Pending'} | <span class="label">ISWC:</span> ${track.iswc || 'Pending'}</p>
                             <p><span class="label">Songwriters:</span> ${writers}</p>
                             <p><span class="label">PRO:</span> ${track.proAffiliation || 'N/A'}</p>
+                            ${track.usageTerms ? `<p><span class="label">Legal Terms:</span> ${track.usageTerms}</p>` : ''}
+                            ${track.licensingContact ? `<p><span class="label">Licensing Contact:</span> ${track.licensingContact}</p>` : ''}
                         `;
                         container.appendChild(card);
                     });
@@ -133,7 +150,10 @@
                 songwriters: document.getElementById('songwriters').value.split(',').map(s => s.trim()).filter(s => s),
                 proAffiliation: document.getElementById('proAffiliation').value,
                 soundRecordingCopyrightOwner: document.getElementById('soundRecordingCopyrightOwner').value,
-                compositionCopyrightOwner: document.getElementById('compositionCopyrightOwner').value
+                compositionCopyrightOwner: document.getElementById('compositionCopyrightOwner').value,
+                licenseType: document.getElementById('licenseType').value,
+                usageTerms: document.getElementById('usageTerms').value,
+                licensingContact: document.getElementById('licensingContact').value
             };
 
             fetch('/api/tracks', {
