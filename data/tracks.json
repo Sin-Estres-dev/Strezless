@@ -1,0 +1,50 @@
+[
+  {
+    "id": "6f5439f6-df67-4ac4-901f-08abf3592635",
+    "trackTitle": "Mundo Frio Vi Yo",
+    "artistName": "Sin Estres",
+    "albumTitle": "Mundo Frio Vi Yo",
+    "releaseDate": "2023-03-20",
+    "genre": "Urban, Latin Hip-hop, Indie",
+    "language": "Spanish",
+    "isrc": "QZHN32318925",
+    "bpm": "130",
+    "key": "B Minor",
+    "isExplicit": false,
+    "songwriters": [
+      "Omar Dejesu Orrantia",
+      "Ryan Jeffrey Anderson"
+    ],
+    "proAffiliation": "BMI",
+    "soundRecordingCopyrightOwner": "Songtrust Blvd",
+    "compositionCopyrightOwner": "Ryini Beats",
+    "createdAt": "2026-07-11T00:33:10.821Z"
+  },
+  {
+    "id": "58798b1a-4aa3-4115-bc3b-c761f7d5dd9b",
+    "trackTitle": "Mundo Frio Vi Yo",
+    "artistName": "Sin Estres",
+    "albumTitle": "Mundo Frio Vi Yo",
+    "releaseDate": "2023-03-20",
+    "genre": "Urban, Latin Hip-hop, Indie",
+    "language": "Spanish",
+    "isrc": "QZHN32318925",
+    "iswc": "T-318.893.111-1",
+    "workId": "62481845",
+    "labelName": "Strezless Musick Productionz",
+    "labelISNI": "0000000493716314",
+    "labelIPI": "01218124783",
+    "labelEIN": "86-1986359",
+    "bpm": "130",
+    "key": "B Minor",
+    "isExplicit": false,
+    "songwriters": [
+      "Omar Dejesu Orrantia",
+      "Ryan Jeffrey Anderson"
+    ],
+    "proAffiliation": "BMI",
+    "soundRecordingCopyrightOwner": "Songtrust Blvd",
+    "compositionCopyrightOwner": "Ryini Beats",
+    "createdAt": "2026-07-11T00:52:37.997Z"
+  }
+]

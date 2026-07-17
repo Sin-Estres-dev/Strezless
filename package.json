@@ -23,7 +23,7 @@
     "@paypal/paypal-server-sdk": "^1.0.0",
     "all": "^0.0.0",
     "body-parser": "^2.2.2",
-    "dotenv": "^17.2.3",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express.js": "^1.0.0",
     "pg": "^8.17.2"

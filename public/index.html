@@ -1,227 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strezless Nexus for Music Metadata</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 20px auto; padding: 15px; background: #f4f4f9; color: #333; }
-        h1, h2 { text-align: center; color: #2c3e50; }
-        .form-container, .export-container { background: white; padding: 20px; margin-bottom: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .form-container { border-left: 5px solid #3498db; }
-        .export-container { border-left: 5px solid #2ecc71; text-align: center; }
-        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; box-sizing: border-box; font-family: inherit;}
-        textarea { resize: vertical; min-height: 60px; }
-        button, .export-btn { width: 100%; padding: 12px; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; box-sizing: border-box;}
-        button { background: #3498db; }
-        button:hover { background: #2980b9; }
-        .export-btn { background: #2ecc71; }
-        .export-btn:hover { background: #27ae60; }
-        .message { text-align: center; margin-top: 10px; font-weight: bold; color: green; display: none; }
-        .section-title { font-size: 18px; font-weight: bold; color: #2c3e50; margin: 15px 0 10px 0; border-bottom: 2px solid #eee; padding-bottom: 5px;}
-
-        .track-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #e67e22; }
-        .track-card h3 { margin: 0 0 10px 0; color: #e67e22; }
-        .track-card p { margin: 5px 0; font-size: 15px; }
-        .label { font-weight: bold; color: #555; }
-        .legal-badge { display: inline-block; background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-top: 5px;}
-        
-        .card-actions { margin-top: 15px; display: flex; gap: 10px; }
-        .edit-btn { background: #f39c12; flex: 1; padding: 8px; font-size: 14px; }
-        .edit-btn:hover { background: #d35400; }
-        .delete-btn { background: #e74c3c; flex: 1; padding: 8px; font-size: 14px; }
-        .delete-btn:hover { background: #c0392b; }
-    </style>
-</head>
-<body>
-    <h1>🎵 Strezless Nexus for Music Metadata</h1>
-
-    <div class="export-container">
-        <h2>Distributor Export</h2>
-        <p>Download your entire catalog as a CSV file for DistroKid, TuneCore, etc.</p>
-        <a href="/api/export" class="export-btn">Download CSV</a>
-    </div>
-
-    <div class="form-container">
-        <h2 id="form-title">Add New Track</h2>
-        <form id="trackForm">
-            <div class="section-title">Basic Info</div>
-            <input type="text" id="trackTitle" placeholder="Track Title *" required>
-            <input type="text" id="artistName" placeholder="Artist Name *" required>
-            <input type="text" id="albumTitle" placeholder="Album Title">
-            <input type="date" id="releaseDate">
-            <input type="text" id="genre" placeholder="Genre">
-            <input type="text" id="language" placeholder="Language">
-
-            <div class="section-title">Identifiers & Technical</div>
-            <input type="text" id="isrc" placeholder="ISRC">
-            <input type="number" id="bpm" placeholder="BPM">
-            <input type="text" id="key" placeholder="Musical Key">
-            <select id="isExplicit">
-                <option value="false">Explicit Content: No</option>
-                <option value="true">Explicit Content: Yes</option>
-            </select>
-
-            <div class="section-title">Composition & Work IDs</div>
-            <input type="text" id="iswc" placeholder="ISWC">
-            <input type="text" id="workId" placeholder="Internal Work ID">
-
-            <div class="section-title">Label & Publisher</div>
-            <input type="text" id="labelName" placeholder="Label Name" value="Strezless Musick Productionz">
-            <input type="text" id="labelISNI" placeholder="Label ISNI">
-            <input type="text" id="labelIPI" placeholder="Label IPI">
-            <input type="text" id="labelEIN" placeholder="Label EIN">
-
-            <div class="section-title">Rights & Royalties</div>
-            <input type="text" id="songwriters" placeholder="Songwriters (Comma separated)">
-            <input type="text" id="proAffiliation" placeholder="PRO Affiliation">
-            <input type="text" id="soundRecordingCopyrightOwner" placeholder="Sound Recording Copyright (P)">
-            <input type="text" id="compositionCopyrightOwner" placeholder="Composition Copyright (C)">
-
-            <div class="section-title">Legal & Licensing</div>
-            <select id="licenseType">
-                <option value="All Rights Reserved">All Rights Reserved</option>
-                <option value="Sync Licensing Available">Sync Licensing Available</option>
-                <option value="Non-Exclusive Lease">Non-Exclusive Lease</option>
-                <option value="Exclusive Rights Sold">Exclusive Rights Sold</option>
-                <option value="Custom License">Custom License</option>
-            </select>
-            <textarea id="usageTerms" placeholder="Usage Terms / Restrictions"></textarea>
-            <input type="text" id="licensingContact" placeholder="Contact for Licensing">
-
-            <button type="submit" id="submitBtn">Save Track Metadata</button>
-            <p id="successMsg" class="message">Track saved successfully!</p>
-        </form>
-    </div>
-
-    <h2>Your Catalog</h2>
-    <div id="tracks-container">Loading tracks...</div>
-
-    <script>
-        let editingId = null;
-
-        function loadTracks() {
-            fetch('/api/tracks').then(r => r.json()).then(tracks => {
-                const container = document.getElementById('tracks-container');
-                container.innerHTML = ''; 
-                if (tracks.length === 0) { container.innerHTML = '<p style="text-align:center;">No tracks found yet.</p>'; return; }
-                
-                tracks.reverse().forEach(track => {
-                    const card = document.createElement('div');
-                    card.className = 'track-card';
-                    const writers = Array.isArray(track.songwriters) ? track.songwriters.join(', ') : (track.songwriters || 'N/A');
-                    let badgeColor = '#e74c3c';
-                    if (track.licenseType === 'Sync Licensing Available') badgeColor = '#f39c12';
-                    if (track.licenseType === 'Non-Exclusive Lease') badgeColor = '#3498db';
-
-                    card.innerHTML = `
-                        <h3>${track.trackTitle}</h3>
-                        <span class="legal-badge" style="background:${badgeColor}">${track.licenseType || 'All Rights Reserved'}</span>
-                        <p><span class="label">Artist:</span> ${track.artistName}</p>
-                        <p><span class="label">ISRC:</span> ${track.isrc || 'Pending'} | <span class="label">ISWC:</span> ${track.iswc || 'Pending'}</p>
-                        <p><span class="label">Songwriters:</span> ${writers}</p>
-                        <div class="card-actions">
-                            <button class="edit-btn" data-id="${track.id}">Edit</button>
-                            <button class="delete-btn" data-id="${track.id}">Delete</button>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            });
-        }
-
-        document.getElementById('tracks-container').addEventListener('click', function(e) {
-            if (e.target.classList.contains('edit-btn')) {
-                const id = e.target.getAttribute('data-id');
-                fetch(`/api/tracks/${id}`).then(r => r.json()).then(track => {
-                    editingId = id;
-                    document.getElementById('form-title').innerText = `Editing: ${track.trackTitle}`;
-                    document.getElementById('submitBtn').innerText = 'Update Track';
-                    
-                    document.getElementById('trackTitle').value = track.trackTitle || '';
-                    document.getElementById('artistName').value = track.artistName || '';
-                    document.getElementById('albumTitle').value = track.albumTitle || '';
-                    document.getElementById('releaseDate').value = track.releaseDate || '';
-                    document.getElementById('genre').value = track.genre || '';
-                    document.getElementById('language').value = track.language || '';
-                    document.getElementById('isrc').value = track.isrc || '';
-                    document.getElementById('bpm').value = track.bpm || '';
-                    document.getElementById('key').value = track.key || '';
-                    document.getElementById('isExplicit').value = track.isExplicit ? 'true' : 'false';
-                    document.getElementById('iswc').value = track.iswc || '';
-                    document.getElementById('workId').value = track.workId || '';
-                    document.getElementById('labelName').value = track.labelName || '';
-                    document.getElementById('labelISNI').value = track.labelISNI || '';
-                    document.getElementById('labelIPI').value = track.labelIPI || '';
-                    document.getElementById('labelEIN').value = track.labelEIN || '';
-                    document.getElementById('songwriters').value = Array.isArray(track.songwriters) ? track.songwriters.join(', ') : (track.songwriters || '');
-                    document.getElementById('proAffiliation').value = track.proAffiliation || '';
-                    document.getElementById('soundRecordingCopyrightOwner').value = track.soundRecordingCopyrightOwner || '';
-                    document.getElementById('compositionCopyrightOwner').value = track.compositionCopyrightOwner || '';
-                    document.getElementById('licenseType').value = track.licenseType || 'All Rights Reserved';
-                    document.getElementById('usageTerms').value = track.usageTerms || '';
-                    document.getElementById('licensingContact').value = track.licensingContact || '';
-
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-            if (e.target.classList.contains('delete-btn')) {
-                const id = e.target.getAttribute('data-id');
-                if (confirm('Are you sure you want to delete this track? This cannot be undone.')) {
-                    fetch(`/api/tracks/${id}`, { method: 'DELETE' }).then(() => loadTracks());
-                }
-            }
-        });
-
-        document.getElementById('trackForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const newTrack = {
-                trackTitle: document.getElementById('trackTitle').value,
-                artistName: document.getElementById('artistName').value,
-                albumTitle: document.getElementById('albumTitle').value,
-                releaseDate: document.getElementById('releaseDate').value,
-                genre: document.getElementById('genre').value,
-                language: document.getElementById('language').value,
-                isrc: document.getElementById('isrc').value,
-                iswc: document.getElementById('iswc').value,
-                workId: document.getElementById('workId').value,
-                labelName: document.getElementById('labelName').value,
-                labelISNI: document.getElementById('labelISNI').value,
-                labelIPI: document.getElementById('labelIPI').value,
-                labelEIN: document.getElementById('labelEIN').value,
-                bpm: document.getElementById('bpm').value,
-                key: document.getElementById('key').value,
-                isExplicit: document.getElementById('isExplicit').value === 'true',
-                songwriters: document.getElementById('songwriters').value.split(',').map(s => s.trim()).filter(s => s),
-                proAffiliation: document.getElementById('proAffiliation').value,
-                soundRecordingCopyrightOwner: document.getElementById('soundRecordingCopyrightOwner').value,
-                compositionCopyrightOwner: document.getElementById('compositionCopyrightOwner').value,
-                licenseType: document.getElementById('licenseType').value,
-                usageTerms: document.getElementById('usageTerms').value,
-                licensingContact: document.getElementById('licensingContact').value
-            };
-
-            const url = editingId ? `/api/tracks/${editingId}` : '/api/tracks';
-            const method = editingId ? 'PUT' : 'POST';
-
-            fetch(url, {
-                method: method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newTrack)
-            })
-            .then(response => response.json())
-            .then(data => {
-                editingId = null;
-                document.getElementById('form-title').innerText = 'Add New Track';
-                document.getElementById('submitBtn').innerText = 'Save Track Metadata';
-                document.getElementById('trackForm').reset();
-                document.getElementById('successMsg').style.display = 'block';
-                setTimeout(() => document.getElementById('successMsg').style.display = 'none', 3000);
-                loadTracks();
-            });
-        });
-
-        loadTracks();
-    </script>
-</body>
-</html>
+<!DOCTYPE html><html><head><title>Strezless Nexus</title></head><body>
+<h1>Strezless Nexus for Music Metadata</h1>
+<a href="/api/export">Download CSV Export</a><hr>
+<h2>Tracks</h2><div id="tracks"></div><hr>
+<h2>Add / Edit Track</h2>
+<form id="trackForm">
+Title*: <input id="trackTitle" required><br>
+Artist*: <input id="artistName" required><br>
+Album: <input id="albumTitle"><br>
+ISRC: <input id="isrc"><br>
+ISWC: <input id="iswc"><br>
+Label: <input id="labelName" value="Strezless Musick Productionz"><br>
+Master Owner: <input id="masterOwner"><br>
+Publishing Owner: <input id="publishingOwner"><br>
+License: <select id="licenseType"><option>All Rights Reserved</option><option>Sync Licensing Available</option><option>Non-Exclusive Lease</option><option>Exclusive Rights Sold</option></select><br>
+Usage Terms: <input id="usageTerms"><br>
+AI Disclosure: <select id="aiDisclosure"><option value="none">No AI</option><option value="ai-assisted">AI-Assisted</option><option value="ai-generated">AI-Generated</option></select><br>
+<button type="submit">Save Track</button>
+</form><hr>
+<h2>Contributors</h2>
+<form id="contribForm">Name*: <input id="cName" required> Role: <input id="cRole"><button type="submit">Add</button></form>
+<div id="contribs"></div>
+<script>
+function loadTracks(){fetch('/api/tracks').then(r=>r.json()).then(t=>{document.getElementById('tracks').innerHTML=t.map(x=>`<div><b>${x.trackTitle}</b> - ${x.artistName} | ${x.isrc||'No ISRC'} | ${x.licenseType} <button onclick="edit('${x.id}')">Edit</button> <button onclick="del('${x.id}')">Delete</button></div>`).join('')})}
+function edit(id){fetch(`/api/tracks/${id}`).then(r=>r.json()).then(x=>{trackTitle.value=x.trackTitle;artistName.value=x.artistName;albumTitle.value=x.albumTitle||'';isrc.value=x.isrc||'';iswc.value=x.iswc||'';labelName.value=x.labelName||'';masterOwner.value=x.masterOwner||'';publishingOwner.value=x.publishingOwner||'';licenseType.value=x.licenseType||'All Rights Reserved';usageTerms.value=x.usageTerms||'';aiDisclosure.value=x.aiDisclosure||'none';window.editingId=id})}
+function del(id){if(confirm('Delete?'))fetch(`/api/tracks/${id}`,{method:'DELETE'}).then(loadTracks)}
+trackForm.onsubmit=e=>{e.preventDefault();let d={trackTitle:trackTitle.value,artistName:artistName.value,albumTitle:albumTitle.value,isrc:isrc.value.toUpperCase(),iswc:iswc.value.toUpperCase(),labelName:labelName.value,masterOwner:masterOwner.value,publishingOwner:publishingOwner.value,licenseType:licenseType.value,usageTerms:usageTerms.value,aiDisclosure:aiDisclosure.value};fetch(window.editingId?`/api/tracks/${window.editingId}`:'/api/tracks',{method:window.editingId?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(()=>{trackForm.reset();window.editingId=null;loadTracks()})};
+contribForm.onsubmit=e=>{e.preventDefault();fetch('/api/contributors',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:cName.value,role:cRole.value})}).then(()=>{contribForm.reset();loadContribs()})};
+function loadContribs(){fetch('/api/contributors').then(r=>r.json()).then(c=>{document.getElementById('contribs').innerHTML=c.map(x=>`<div>${x.name} - ${x.role||''} <button onclick="fetch('/api/contributors/${x.id}',{method:'DELETE'}).then(loadContribs)">Del</button></div>`).join('')})}
+loadTracks();loadContribs();
+</script></body></html>
