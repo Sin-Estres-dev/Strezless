@@ -1,1 +1,0 @@
-{"version":3,"file":"paypalWalletAccountVerificationStatus.d.ts","sourceRoot":"","sources":["../../../src/models/paypalWalletAccountVerificationStatus.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAE,MAAM,EAAc,MAAM,WAAW,CAAC;AAE/C;;GAEG;AACH,oBAAY,qCAAqC;IAC/C,QAAQ,aAAa;IACrB,UAAU,eAAe;CAC1B;AAED;;GAEG;AACH,eAAO,MAAM,2CAA2C,EAAE,MAAM,CAAC,qCAAqC,CAGrG,CAAC"}

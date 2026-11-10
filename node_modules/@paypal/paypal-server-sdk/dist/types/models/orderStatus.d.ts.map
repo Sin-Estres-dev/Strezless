@@ -1,1 +1,0 @@
-{"version":3,"file":"orderStatus.d.ts","sourceRoot":"","sources":["../../../src/models/orderStatus.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAE,MAAM,EAAc,MAAM,WAAW,CAAC;AAE/C;;GAEG;AACH,oBAAY,WAAW;IACrB,OAAO,YAAY;IACnB,KAAK,UAAU;IACf,QAAQ,aAAa;IACrB,MAAM,WAAW;IACjB,SAAS,cAAc;IACvB,mBAAmB,0BAA0B;CAC9C;AAED;;GAEG;AACH,eAAO,MAAM,iBAAiB,EAAE,MAAM,CAAC,WAAW,CAGjD,CAAC"}

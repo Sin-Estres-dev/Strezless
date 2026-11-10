@@ -1,1 +1,0 @@
-{"version":3,"file":"payerBase.d.ts","sourceRoot":"","sources":["../../../src/models/payerBase.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAEH,OAAO,EAAoB,MAAM,EAAU,MAAM,WAAW,CAAC;AAE7D,iGAAiG;AACjG,MAAM,WAAW,SAAS;IACxB,qRAAqR;IACrR,YAAY,CAAC,EAAE,MAAM,CAAC;IACtB,mDAAmD;IACnD,OAAO,CAAC,EAAE,MAAM,CAAC;CAClB;AAED,eAAO,MAAM,eAAe,EAAE,MAAM,CAAC,SAAS,CAG5C,CAAC"}
