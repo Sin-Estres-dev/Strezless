@@ -30,6 +30,17 @@ composer.phar
 Thumbs.db
 
 # Project-specific
+
+# Environment files
+.env
+.env.local
+
+# Composer
+composer.phar
+/vendor/
+# composer.lock
+
+# Build artifacts
 copilot-termux-setup/
 
 # Logs

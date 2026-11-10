@@ -1,6 +1,6 @@
 # What Can You Do - Strezless Repository Capabilities
 
-This document outlines the current capabilities and potential features that can be implemented in the Strezless Musick Productionz repository.
+This document outlines the current capabilities and potential features that can be implemented in the Strezless Nexus Metadata repository.
 
 ## Current Capabilities
 
